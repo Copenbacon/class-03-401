@@ -1,6 +1,4 @@
-
-Conor Clary [7:44 PM]  
-```"""Trigrams File to produce a trigram froma specified book.txt."""
+"""Trigrams File to produce a trigram froma specified book.txt."""
 
 
 def main(path, num_words):
@@ -52,8 +50,8 @@ def generate_text(dict_of_pp, num_words):
             text.append(new_word_pair)
     return text
 
-    if __name__ == "__main__":
-        import sys
-        user_input1 = sys.argv[1]
-        user_input2 = sys.argv[2]
-        python trigrams.py main(user_input1, user_input2)
+if __name__ == "__main__":
+    import sys
+    user_input1 = sys.argv[1]
+    user_input2 = sys.argv[2]
+    print(main(user_input1, int(user_input2)))
