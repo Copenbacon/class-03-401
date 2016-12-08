@@ -1,4 +1,6 @@
-"""Trigrams File to produce a trigram froma specified book.txt."""
+
+Conor Clary [7:44 PM]  
+```"""Trigrams File to produce a trigram froma specified book.txt."""
 
 
 def main(path, num_words):
@@ -6,6 +8,8 @@ def main(path, num_words):
     data_list = setup(path)
     dict_of_pp = iter_over_data_list(data_list)
     text = generate_text(dict_of_pp, num_words)
+    return text
+
 
 def iter_over_data_list(data_list):
     """Iterate over the data and add to dictionary."""
@@ -16,8 +20,9 @@ def iter_over_data_list(data_list):
         dict_of_pp[f].append(data_list[x + 2])
     return dict_of_pp
 
+
 def setup(path):
-    """Render a data list of the words from the path entered."""
+    """Setup the file to render a data list of the words from the path entered."""
     import io
     file = io.open(path, encoding='utf8')
     data = file.read()
@@ -25,11 +30,12 @@ def setup(path):
     data_list = data.split()
     return data_list
 
+
 def generate_text(dict_of_pp, num_words):
     """Generate the text to write to the file."""
     import random
     text = []
-    rand_key = random.choice(dict_of_pp.keys())
+    rand_key = random.choice(list(dict_of_pp.keys()))
     first_word_pair = rand_key.split()
     text.extend(first_word_pair)
     rand_num = random.randint(0, len(dict_of_pp[rand_key]) - 1)
@@ -40,10 +46,14 @@ def generate_text(dict_of_pp, num_words):
             new_word_pair = text[-2] + ' ' + text[-1]
             rand_num4 = random.randint(0, len(dict_of_pp[new_word_pair]) - 1)
             new_word = dict_of_pp[new_word_pair][rand_num4]
+            text.append(new_word)
         except KeyError:
-            new_word_pair = random.choice(dict_of_pp.keys())
+            new_word_pair = random.choice(list(dict_of_pp.keys()))
             text.append(new_word_pair)
-            rand_num4 = random.randint(0, len(dict_of_pp[new_word_pair]) - 1)
-            new_word = dict_of_pp[new_word_pair][rand_num4]
-        text.append(new_word)
     return text
+
+    if __name__ == "__main__":
+        import sys
+        user_input1 = sys.argv[1]
+        user_input2 = sys.argv[2]
+        python trigrams.py main(user_input1, user_input2)

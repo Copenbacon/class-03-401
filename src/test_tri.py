@@ -1,4 +1,5 @@
-"""This tests the Trigrams module."""
+
+ ```"""This tests the Trigrams module."""
 import pytest
 
 DICTIONARY_TABLE = [
@@ -28,8 +29,18 @@ DATA_LIST_TABLE = [
         "our",
         "book",
         "of",
-        "choice"]]
+        "choice"]],
+]
 
+GENERATE_TABLE = [
+    [{
+        'holy shit': ['it\'s'],
+        'shit it\'s': ['butter'],
+    }, 5],
+    [{
+        'holy shit': ['it\'s'],
+        'shit it\'s': ['butter'],
+    }, 10],
 ]
 
 
@@ -45,3 +56,10 @@ def test_setup(path, result):
     """Test the setup function from Trigrams."""
     from trigrams import setup
     assert setup(path) == result
+
+
+@pytest.mark.parametrize("special_dict, num_words", GENERATE_TABLE)
+def test_generate_text(special_dict, num_words):
+    """Test Generate Text function is outputting correct num_words."""
+    from trigrams import generate_text
+    assert len(generate_text(special_dict, num_words)) == num_words
