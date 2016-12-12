@@ -7,8 +7,9 @@ def main(path, num_words):
     dict_of_pp = iter_over_data_list(data_list)
     text = generate_first_values(dict_of_pp)
     text = generate_text(text, dict_of_pp, num_words)
-    printme = write_text_to_screen(text)
-    return printme
+    # printme = write_text_to_screen(text)
+    printme = ' '.join(text)
+    return '...' + printme + '...'
 
 
 def setup(path):
@@ -36,11 +37,9 @@ def generate_first_values(dict_of_pp):
     import random
     text = []
     rand_key = random.choice(list(dict_of_pp.keys()))
-    first_word_pair = rand_key.split()
-    text.extend(first_word_pair)
+    text.extend(rand_key.split())
     rand_num = random.randint(0, len(dict_of_pp[rand_key]) - 1)
-    new_word = dict_of_pp[rand_key][rand_num]
-    text.append(new_word)
+    text.append(dict_of_pp[rand_key][rand_num])
     return text
 
 
@@ -59,16 +58,20 @@ def generate_text(text, dict_of_pp, num_words):
     return text
 
 
-def write_text_to_screen(text):
-    """Write the text to the user's screen."""
-    the_written_word = ''
-    for i in range(len(text)):
-        the_written_word += text[i] + ' '
-    return the_written_word
+# def write_text_to_screen(text):
+#     """Write the text to the user's screen."""
+#     the_written_word = ''
+#     for i in range(len(text)):
+#         the_written_word += text[i] + ' '
+#     return the_written_word
 
 
 if __name__ == "__main__":
     import sys
+    import os
     user_input1 = sys.argv[1]
-    user_input2 = sys.argv[2]
-    print(main(user_input1, int(user_input2)))
+    user_input2 = int(sys.argv[2])
+    if os.path.isfile(user_input1):
+        print(main(user_input1, user_input2))
+    else:
+        print('Please provide valid input, a file path and number of words you would like returned')
