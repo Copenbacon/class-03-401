@@ -1,4 +1,6 @@
 """Trigrams File to produce a trigram froma specified book.txt."""
+import sys
+import os
 
 
 def main(path, num_words):
@@ -7,7 +9,6 @@ def main(path, num_words):
     dict_of_pp = iter_over_data_list(data_list)
     text = generate_first_values(dict_of_pp)
     text = generate_text(text, dict_of_pp, num_words)
-    # printme = write_text_to_screen(text)
     printme = ' '.join(text)
     return '...' + printme + '...'
 
@@ -58,17 +59,7 @@ def generate_text(text, dict_of_pp, num_words):
     return text
 
 
-# def write_text_to_screen(text):
-#     """Write the text to the user's screen."""
-#     the_written_word = ''
-#     for i in range(len(text)):
-#         the_written_word += text[i] + ' '
-#     return the_written_word
-
-
 if __name__ == "__main__":
-    import sys
-    import os
     user_input1 = sys.argv[1]
     user_input2 = int(sys.argv[2])
     if os.path.isfile(user_input1):
